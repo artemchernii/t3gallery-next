@@ -4,8 +4,8 @@
 
 - [x] Make a deploy (vercel)
 - [x] Scaffold ui with basic mock data
-- [ ] Setup a Database (vercel)
-- [ ] Attach database to ui
+- [x] Setup a Database (vercel)
+- [x] Attach database to ui
 - [ ] Add auth (clerk)
 - [ ] Add image upload
 - [ ] Error handling with Sentry
