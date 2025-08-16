@@ -14,6 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import {
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  UserButton,
+} from "@clerk/nextjs";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -21,7 +28,7 @@ export function Navbar() {
   const navItems = [{ name: "Dashboard", href: "/" }];
 
   return (
-    <header className="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b bg-black/95 px-[10%] backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b bg-white px-[10%] text-black backdrop-blur">
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo & Desktop Nav */}
         <div className="flex items-center gap-10">
@@ -42,8 +49,26 @@ export function Navbar() {
           </nav>
         </div>
 
-        {/* Desktop User Menu */}
         <div className="hidden items-center gap-4 md:flex">
+          <SignedOut>
+            <SignInButton>
+              <button className="cursor-pointer text-black hover:text-black/50">
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton>
+              <button className="cursor-pointer text-black hover:text-black/50">
+                Sign Up
+              </button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
+        {/* TODO: to be removed, was playing with shadcn */}
+        {/* Desktop User Menu */}
+        {/* <div className="hidden items-center gap-4 md:flex">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -68,12 +93,11 @@ export function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="flex items-center gap-2 text-red-600">
-                <LogOut className="h-4 w-4" />
-                <span>Log out</span>
+
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button */}
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
